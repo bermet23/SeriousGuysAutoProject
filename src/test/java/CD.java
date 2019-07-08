@@ -1,6 +1,7 @@
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -223,6 +224,15 @@ public class CD {
             Done();
         }
 
+    }
+
+    public static void ScrollPage(int pixels){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        if(pixels > 0){
+            js.executeScript("window.scrollBy(0," + pixels + ")");
+        }else{
+            js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
+        }
     }
 
 
