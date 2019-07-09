@@ -30,6 +30,9 @@ public class MainTestNG {
         driver.close();
     }
 
+
+    //Below three scenarios are Muhammet's test cases
+
     @Test
     public void CheckingEvents() throws InterruptedException {
 
@@ -278,7 +281,10 @@ public class MainTestNG {
         }
     }
 
-    //Below three scenarious are Akcholpon test cases
+    // End of Muhammet's Test Cases
+
+    //Below three scenarios are Akcholpon's Test Cases
+
     @Test
     public void filterEventsByChoosingAudience() throws InterruptedException{
 
@@ -389,7 +395,8 @@ public class MainTestNG {
 
     // End of Akcholpon's test cases
 
-    // below three tesfaldet's test cases
+    // Below three Tesfaldet's test cases
+
     @Test
     public  void becomeAMember() {
   // Select the membership menu from the home page and open it.
@@ -405,7 +412,6 @@ public class MainTestNG {
 
         WebElement info = driver.findElement(By.xpath("//div[@class ='row']"));
         Assert.assertTrue(info.isDisplayed()) ;
-
 
     }
     @Test
@@ -487,5 +493,123 @@ public class MainTestNG {
 
 
     }
+
+    // End of Tesfaldet's Test Cases
+
+    // Below three scenarios are Saim's Test Cases
+
+            /*
+                Plan Your Visit Linked Pages Test Case evaluates users going to Plan your visit page and being able to
+                to click on the following linked pages and correctly being take to the clicked page: Exhibitions, Directions
+                and Parking, Maps Guide, Amenities, Grainger Science Hub, Public Tours, Discovery Squad , and Meet a Scientist
+
+             */
+    @Test
+    public void PlanYourVisitLinkedPages() throws InterruptedException {
+        JavascriptExecutor jse = (JavascriptExecutor) CD.driver;
+
+        jse.executeScript("scroll(0, 700);");
+        CD.FindAndClick("link","Visit Information");
+
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
+
+        CD.FindAndClick("id","card__title-text-26236");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-14156");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/directions-parking"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-6686");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/maps-guides"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-23831");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/amenities"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-21926");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions/grainger-science-hub"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-26731");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/public-tours"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-16666");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/discovery-squad"));
+        CD.driver.navigate().back();
+
+        CD.FindAndClick("id","card__title-text-9901");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist"));
+        CD.driver.navigate().back();
+
+
+
+    }
+
+            /*
+                Plan Your Visit Learn More Page URLS Test Case goes to the 'plan your visit' page from the field museum web page and
+                verifies if all the 'learn more' links on the page are linked to the correct urls
+                -> learnMore List holds all the 'learn more' button elements
+                -> learnMoreNames List gets corresponding names to the 'learn more' buttons
+                -> learnMOreLinks array holds all the correct expected url links
+            */
+    @Test
+    public void PlanYourVisitLearnMorePageURLS() throws InterruptedException{
+        CD.FindAndClick("link","Visit Information");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
+
+        CD.ScrollPage(1500);
+
+        List<WebElement> learnMore= CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//a"));
+        List<WebElement> learnMoreNames = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//h3"));
+        String [] learnMoreLinks = {"https://www.fieldmuseum.org/join-give/become-member",
+                "https://www.citypass.com/chicago?mv_source=field&campaign=visit",
+                "https://gocity.com/en-us/?kbid=5657&utm_medium=aff&utm_source=myap&utm_campaign=5657&utm_content=Your%20Default%20Affiliate%20Link",
+                "http://www.chicityclerk.com/chicagocitykey",
+                "https://www.fieldmuseum.org/our-events/free-admission-days"};
+
+
+        for(int i=0; i < learnMore.size(); i++) {
+            String elementLink = learnMore.get(i).getAttribute("href");
+            Assert.assertTrue(elementLink.equals(learnMoreLinks[i]));
+        }
+
+
+    }
+
+            /*
+                Plan Your Visit Ticket Information Test Case goes to the 'plan your visit' page after going to the main field museum
+                web page and verifies if all the ticket information displayed on the page is as expected.
+                -> The expected prices are stored in a String array called 'eachPrice'
+                -> Each WebElement corresponding to the prices are stored into a List called 'prices'
+                -> A loop is run  that checks the prices depending on the type of pass and the age of the person getting the pass and verifies
+                    if the prices match the expected price
+           */
+    @Test
+    public void PlanYourVisitTicketInformation() throws InterruptedException{
+
+        CD.FindAndClick("link","Visit Information");
+        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
+
+        CD.ScrollPage(450);
+
+        List<WebElement> prices = CD.driver.findElements(By.xpath("//ul[@class='pricing-table']/li/span[2]"));
+
+        String [] eachPrice = {"$40/38","$29/27","$35/33","$34/32","$25/23","$30/28","$26/24","$19/17","$23/21"};
+
+        for(int i=0,r=0; i < 3; i++, r+=3) {
+            Assert.assertTrue(prices.get(r).getText().equals(eachPrice[r]));
+            Assert.assertTrue(prices.get(r+1).getText().equals(eachPrice[r+1]));
+            Assert.assertTrue(prices.get(r+2).getText().equals(eachPrice[r+2]));
+        }
+
+    }
+
+    // End of Saim's Test Cases
+
+
 
     }
