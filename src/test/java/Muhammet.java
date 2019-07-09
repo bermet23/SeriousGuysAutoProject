@@ -4,35 +4,21 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Muhammet {
-    WebDriver driver;
 
-
-    @BeforeMethod
-    public void SetUp() throws InterruptedException {
+    public static void CheckingEvents() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.get("https://www.fieldmuseum.org/");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Thread.sleep(2000);
         driver.manage().window().maximize();
         Thread.sleep(2000);
-
-    }
-
-
-    @Test
-    public void CheckingEvents() throws InterruptedException {
 
 //Clicks "Menu" button
         driver.findElement(By.xpath("//button[@class='header__menu-open js-menu-open']")).click();
@@ -52,7 +38,7 @@ public class Muhammet {
 
 //Checks "Poetry Pop-Up: Faceted Poetry" page is opened
 
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/poetry-pop-faceted-poetry", "#1 You are not in that webPage");
+        System.out.println("Poetry Pop-Up: Faceted Poetry: " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/poetry-pop-faceted-poetry")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -62,7 +48,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Fossils & Flicks: Men In Black" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-men-black", "#2 You are not in that webPage");
+        System.out.println("\"Fossils & Flicks: Men In Black\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fossils-flicks-men-black")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -72,7 +58,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Fantastic Bug Encounters! Member Viewing and Presentation" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fantastic-bug-encounters-member-viewing-and-presentation", "#3 You are not in that webPage");
+        System.out.println("\"Fantastic Bug Encounters! Member Viewing and Presentation\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fantastic-bug-encounters-member-viewing-and-presentation")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -82,7 +68,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Member-only Docent Tours: Birds of North America" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/member-only-docent-tours-birds-north-america", "#4 You are not in that webPage");
+        System.out.println("\"Member-only Docent Tours: Birds of North America\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/member-only-docent-tours-birds-north-america")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -92,7 +78,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Fossils & Flicks: A Bug’s Life" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-bugs-life", "#5 You are not in that webPage");
+        System.out.println("\"Fossils & Flicks: A Bug’s Life\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fossils-flicks-bugs-life")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -102,7 +88,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Poetry Pop-Up: Fantastic Bug Encounters" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/poetry-pop-fantastic-bug-encounters", "#6 You are not in that webPage");
+        System.out.println("\"Poetry Pop-Up: Fantastic Bug Encounters\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/poetry-pop-fantastic-bug-encounters")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -112,7 +98,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Fossils & Flicks: Toy Story" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-toy-story", "#7 You are not in that webPage");
+        System.out.println("\"Fossils & Flicks: Toy Story\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fossils-flicks-toy-story")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -122,7 +108,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Meet a Scientist: The Value of Seeds" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/meet-scientist-value-seeds", "#8 You are not in that webPage");
+        System.out.println("\"Meet a Scientist: The Value of Seeds\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist-value-seeds")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -132,7 +118,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Meet a Scientist: Processing New Acquisitions in Anthropology" is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/meet-scientist-processing-new-acquisitions-anthropology", "#9 You are not in that webPage");
+        System.out.println("\"Meet a Scientist: Processing New Acquisitions in Anthropology\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist-processing-new-acquisitions-anthropology")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -142,7 +128,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks "Poetry Pop-Up: Odes to SUE" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/poetry-pop-odes-sue","#10 You are not in that webPage");
+        System.out.println("\"Poetry Pop-Up: Odes to SUE\": " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/poetry-pop-odes-sue")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -152,7 +138,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks Fossils & Flicks: Bee Movie page is opened
-       Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/fossils-flicks-bee-movie","#11 You are not in that webPage");
+        System.out.println("Fossils & Flicks: Bee Movie: " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fossils-flicks-bee-movie")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -162,7 +148,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks Fossils & Flicks: Finding Dory page is opened
-      Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/fossils-flicks-finding-dory","#12 You are not in that webPage");
+        System.out.println("Fossils & Flicks: Finding Dory: " + CD.passOrFail(driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/fossils-flicks-finding-dory")));
 
         driver.navigate().back();
         Thread.sleep(2000);
@@ -172,14 +158,18 @@ public class Muhammet {
 //        Thread.sleep(3000);
 
 
-
+        driver.close();
 
 
     }
 
-    @Test
-    public void CheckingGiftsPriceUnder10() throws InterruptedException {
-
+    public static void CheckingGiftsPriceUnder10() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.fieldmuseum.org/");
+        Thread.sleep(2000);
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
 
         JavascriptExecutor scrl = (JavascriptExecutor) driver;
 
@@ -193,14 +183,14 @@ public class Muhammet {
 
 //Checks webpage
 
-        Assert.assertEquals(driver.getCurrentUrl(),"https://store.fieldmuseum.org/Gifts/","You are not in Gift webPage");
+        System.out.println("Right webpage is opened: " + CD.passOrFail(driver.getCurrentUrl().equals("https://store.fieldmuseum.org/Gifts/")));
 
 //Clicks "Under $10" checkbox
         driver.findElement(By.xpath("//input[@name='t_67']")).click();
         Thread.sleep(2000);
 
 //Checks checkBox is selected
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@name='t_67']")).isSelected(),"#1 Checkbox is not selected");
+        System.out.println("Check box is selected: " + CD.passOrFail(driver.findElement(By.xpath("//input[@name='t_67']")).isSelected()));
 
         scrl.executeScript("window.scrollBy(0,3200)");
         Thread.sleep(2000);
@@ -232,11 +222,16 @@ public class Muhammet {
             System.out.println("Failed");
         }
 
-
+        driver.close();
     }
 
-    @Test
-    public  void CheckingGiftsPrice10To20() throws InterruptedException {
+    public static void CheckingGiftsPrice10To20() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.fieldmuseum.org/");
+        Thread.sleep(2000);
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
 
         JavascriptExecutor scrl = (JavascriptExecutor) driver;
 
@@ -249,7 +244,7 @@ public class Muhammet {
         Thread.sleep(2000);
 
 //Checks webpage
-       Assert.assertEquals(driver.getCurrentUrl(),"https://store.fieldmuseum.org/Gifts/","#1 You are not in that webPage");
+        System.out.println("Right webpage is opened: " + CD.passOrFail(driver.getCurrentUrl().equals("https://store.fieldmuseum.org/Gifts/")));
 
 //Clicking checkBox "10$ - 20$"
         driver.findElement(By.xpath("//input[@name='t_70']")).click();
@@ -277,6 +272,8 @@ public class Muhammet {
         } else {
             System.out.println("Failed");
         }
+
+        driver.close();
     }
 
 

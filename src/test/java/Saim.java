@@ -1,13 +1,10 @@
 import org.openqa.selenium.*;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import java.util.List;
 
 public class Saim {
-//    public static void main(String[] args) throws InterruptedException{
-//        PlanYourVisitTicketInformationTestCase();
-//    }
+    public static void main(String[] args) throws InterruptedException{
+        PlanYourVisitTicketInformationTestCase();
+    }
 
         /*
                 Plan Your Visit Linked Pages Test Case evaluates users going to Plan your visit page and being able to
@@ -15,70 +12,6 @@ public class Saim {
                 and Parking, Maps Guide, Amenities, Grainger Science Hub, Public Tours, Discovery Squad , and Meet a Scientist
 
         */
-
-    @Test
-    public void PlanYourVisitLinkedPages() throws InterruptedException{
-        JavascriptExecutor jse = (JavascriptExecutor) CD.driver;
-        int sleep = 1000;
-
-        Thread.sleep(sleep);
-        jse.executeScript("scroll(0, 700);");
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("link","Visit Information");
-        Thread.sleep(sleep);
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-26236");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-14156");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/directions-parking"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-6686");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/maps-guides"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-23831");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/amenities"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-21926");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions/grainger-science-hub"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-26731");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/public-tours"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-16666");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/discovery-squad"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-        CD.FindAndClick("id","card__title-text-9901");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist"));
-        Thread.sleep(sleep);
-        CD.driver.navigate().back();
-        Thread.sleep(sleep);
-
-    }
 
     public static void PlanYourVisitLinkedPagesTestCase() throws InterruptedException{
 
