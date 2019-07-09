@@ -392,10 +392,10 @@ public class MainTestNG {
     // below three tesfaldet's test cases
     @Test
     public  void becomeAMember() {
-        // Select the membership menu from the home page and open it.
+  // Select the membership menu from the home page and open it.
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
-        //check if tye logo and the title is displayed.
+   //check if the logo and the title is displayed.
         WebElement Logo = driver.findElement(By.className("field-logo__wrapper"));
         Assert.assertTrue(Logo.isDisplayed());
 
@@ -412,7 +412,7 @@ public class MainTestNG {
     public  void membershipBox() throws InterruptedException{
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
-        //locate the membership, discovery circle and founders council and open them.
+    //locate the membership, discovery circle and founders council and open them.
         WebElement member = driver.findElement(By.id("accordion__button-1"));
         member.click();
         Thread.sleep(2000);
@@ -466,7 +466,7 @@ public class MainTestNG {
     }
     @Test
     public void joinButton() throws InterruptedException {
-
+// clicking the join button and go to the next page
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
         Thread.sleep(1000);
