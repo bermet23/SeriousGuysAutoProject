@@ -466,6 +466,7 @@ public class MainTestNG {
     }
     @Test
     public void joinButton() throws InterruptedException {
+
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
         Thread.sleep(1000);
