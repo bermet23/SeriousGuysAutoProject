@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import sun.awt.windows.ThemeReader;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -571,8 +572,21 @@ public class MainTestNG {
                 "http://www.chicityclerk.com/chicagocitykey",
                 "https://www.fieldmuseum.org/our-events/free-admission-days"};
 
-
+//        CD.CreateMainHandle();
+//        int countHandles =1;
         for(int i=0; i < learnMore.size(); i++) {
+//            learnMore.get(i).click();
+//                for(String handle : CD.driver.getWindowHandles()) {
+//                    if(!handle.equals(CD.mainHandle) && countHandles == i+1) {
+//                        CD.switchWindow(handle);
+//                        countHandles++;
+//                        break;
+//                    }
+//                }
+//                Thread.sleep(2000);
+//                Assert.assertEquals(CD.driver.getCurrentUrl(),learnMoreLinks[i]);
+//                CD.switchWindow(CD.mainHandle);
+
             String elementLink = learnMore.get(i).getAttribute("href");
             Assert.assertTrue(elementLink.equals(learnMoreLinks[i]));
         }
