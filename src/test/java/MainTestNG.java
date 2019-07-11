@@ -24,6 +24,7 @@ public class MainTestNG {
         driver.get("https://www.fieldmuseum.org");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     }
 
     @AfterMethod
@@ -40,142 +41,59 @@ public class MainTestNG {
 //Clicks "Menu" button
         driver.findElement(By.xpath("//button[@class='header__menu-open js-menu-open']")).click();
         Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 
 //Clicks "Event" button
         driver.findElement(By.xpath("//a[.='Events']")).click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         Thread.sleep(2000);
 
-//Clicks calendar to "July 10"
-        driver.findElement(By.xpath("//time[@datetime='2019-07-10T00:00:00.000']")).click();
-        Thread.sleep(2000);
+        //9 time
+//9 time clicks to the next arrow on calendar
+        WebElement nextArrow = driver.findElement(By.xpath("//button[contains(@class,'next-button')]"));
+//1
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//2
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//3
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//4
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//5
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//6
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//7
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//8
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+//9
+        nextArrow.click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 
-//Clicks to "Poetry Pop-Up: Faceted Poetry"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[1]")).click();
-        Thread.sleep(2000);
+//Checks date on Calendar "April,28,2020"
+        WebElement calendar = driver.findElement(By.xpath("//button[.='April 2020']"));
+        Assert.assertEquals(calendar.getText(), ("April 2020"),"Date is not the same");
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 
-//Checks "Poetry Pop-Up: Faceted Poetry" page is opened
+//Clicks calendar to "April 28"
+        driver.findElement(By.xpath("//button[.='28']")).click();
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/poetry-pop-faceted-poetry", "#1 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Fossils & Flicks: Men In Black"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[2]")).click();
-        Thread.sleep(2000);
-
-//Checks "Fossils & Flicks: Men In Black" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-men-black", "#2 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Fantastic Bug Encounters! Member Viewing and Presentation"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[3]")).click();
-        Thread.sleep(2000);
-
-//Checks "Fantastic Bug Encounters! Member Viewing and Presentation" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fantastic-bug-encounters-member-viewing-and-presentation", "#3 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Member-only Docent Tours: Birds of North America"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[4]")).click();
-        Thread.sleep(2000);
-
-//Checks "Member-only Docent Tours: Birds of North America" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/member-only-docent-tours-birds-north-america", "#4 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Fossils & Flicks: A Bug’s Life"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[5]")).click();
-        Thread.sleep(2000);
-
-//Checks "Fossils & Flicks: A Bug’s Life" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-bugs-life", "#5 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Poetry Pop-Up: Fantastic Bug Encounters"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[6]")).click();
-        Thread.sleep(2000);
-
-//Checks "Poetry Pop-Up: Fantastic Bug Encounters" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/poetry-pop-fantastic-bug-encounters", "#6 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Fossils & Flicks: Toy Story"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[7]")).click();
-        Thread.sleep(2000);
-
-//Checks "Fossils & Flicks: Toy Story" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/fossils-flicks-toy-story", "#7 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Meet a Scientist: The Value of Seeds"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[8]")).click();
-        Thread.sleep(2000);
-
-//Checks "Meet a Scientist: The Value of Seeds" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/meet-scientist-value-seeds", "#8 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to "Meet a Scientist: Processing New Acquisitions in Anthropology"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[9]")).click();
-        Thread.sleep(2000);
-
-//Checks "Meet a Scientist: Processing New Acquisitions in Anthropology" is opened
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.fieldmuseum.org/our-events/meet-scientist-processing-new-acquisitions-anthropology", "#9 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks "Poetry Pop-Up: Odes to SUE"
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[10]")).click();
-        Thread.sleep(2000);
-
-//Checks "Poetry Pop-Up: Odes to SUE" page is opened
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/poetry-pop-odes-sue","#10 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to Fossils & Flicks: Bee Movie
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[11]")).click();
-        Thread.sleep(2000);
-
-//Checks Fossils & Flicks: Bee Movie page is opened
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/fossils-flicks-bee-movie","#11 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
-
-//Clicks to Fossils & Flicks: Finding Dory
-        driver.findElement(By.xpath("(//a[@class='calendar-full__title h2 mb-0 mb-3 d-inline-block'])[12]")).click();
-        Thread.sleep(2000);
-
-//Checks Fossils & Flicks: Finding Dory page is opened
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.fieldmuseum.org/our-events/fossils-flicks-finding-dory","#12 You are not in that webPage");
-
-        driver.navigate().back();
-        Thread.sleep(2000);
+//Checks if there's no events to that day
+       Assert.assertTrue(driver.findElement(By.xpath("//button[.='No More Content to Display']")).isDisplayed());
 
 //        JavascriptExecutor jv = (JavascriptExecutor) driver;
 //        jv.executeScript("scroll(0, 4500);");
 //        Thread.sleep(3000);
-
-
-
 
 
     }
@@ -196,14 +114,14 @@ public class MainTestNG {
 
 //Checks webpage
 
-        Assert.assertEquals(driver.getCurrentUrl(),"https://store.fieldmuseum.org/Gifts/","You are not in Gift webPage");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://store.fieldmuseum.org/Gifts/", "You are not in Gift webPage");
 
 //Clicks "Under $10" checkbox
         driver.findElement(By.xpath("//input[@name='t_67']")).click();
         Thread.sleep(2000);
 
 //Checks checkBox is selected
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@name='t_67']")).isSelected(),"#1 Checkbox is not selected");
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@name='t_67']")).isSelected(), "#1 Checkbox is not selected");
 
         scrl.executeScript("window.scrollBy(0,3200)");
         Thread.sleep(2000);
@@ -216,30 +134,18 @@ public class MainTestNG {
 //Getting prices from webPage
         List<WebElement> price = driver.findElements(By.xpath("//span[@class='price']"));
 
-        boolean check = true;
+
 
 //Checking prices from WebPage with given prices at AC
-        if (price.size() == prices.length) {
-            for (int i = 0; i >= price.size(); i++) {
+        Assert.assertEquals(price.size(), prices.length, "price.size are not the same");
 
-                if (price.get(i).equals(prices[i])) {
-                    check = true;
+        for (int i = 0; i >= price.size(); i++) {
 
-                } else {
-                    check = false;
-                    break;
-                }
-            }
-            System.out.println("Checking prices: " + check);
-        } else {
-            System.out.println("Failed");
+            Assert.assertEquals(price.get(i), (prices[i]));
         }
-
-
     }
-
     @Test
-    public  void CheckingGiftsPrice10To20() throws InterruptedException {
+    public void CheckingGiftsPrice10To20() throws InterruptedException {
 
         JavascriptExecutor scrl = (JavascriptExecutor) driver;
 
@@ -252,7 +158,7 @@ public class MainTestNG {
         Thread.sleep(2000);
 
 //Checks webpage
-        Assert.assertEquals(driver.getCurrentUrl(),"https://store.fieldmuseum.org/Gifts/","#1 You are not in that webPage");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://store.fieldmuseum.org/Gifts/", "#1 You are not in that webPage");
 
 //Clicking checkBox "10$ - 20$"
         driver.findElement(By.xpath("//input[@name='t_70']")).click();
@@ -260,26 +166,19 @@ public class MainTestNG {
         //  driver.findElements(By.xpath("//span[@class='price']"));
         List<WebElement> price = driver.findElements(By.className("price"));
 
-        boolean check = true;
+
 
 
 //Checking prices from WebPage with given prices at AC
         String[] prices = {"$44.99", "$44.99", "$55.00", "$55.00", "$46.00", "$59.00", "$49.99", "$59.95", "$46.99", "$45.99", "$45.00", "$45.99", "$45.00", "$45.00", "$50.00", "$42.99", "$42.99,", "$49.99", "$44.99", "$59.99", "$44.99", "$44.99", "$59.99", "$59.99"};
-        if (price.size() == prices.length) {
+        Assert.assertEquals(price.size(),prices.length);
+
             for (int i = 0; i >= price.size(); i++) {
 
-                if (price.get(i).equals(prices[i])) {
-                    check = true;
+                Assert.assertEquals(price.get(i),(prices[i]));
 
-                } else {
-                    check = false;
-                    break;
                 }
-            }
-            System.out.println("Checking prices: " + check);
-        } else {
-            System.out.println("Failed");
-        }
+
     }
 
     // End of Muhammet's Test Cases
@@ -287,7 +186,7 @@ public class MainTestNG {
     //Below three scenarios are Akcholpon's Test Cases
 
     @Test
-    public void filterEventsByChoosingAudience() throws InterruptedException{
+    public void filterEventsByChoosingAudience() throws InterruptedException {
 
         Thread.sleep(2000);
 
@@ -295,14 +194,14 @@ public class MainTestNG {
         driver.findElement(By.xpath("//a[@href='https://www.fieldmuseum.org/our-events']")).click();
 
 
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='col-12 basic-page__hero']//h1")).getText(),"EVENTS");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='col-12 basic-page__hero']//h1")).getText(), "EVENTS");
         Thread.sleep(2000);
 
 
         //clicking Audience box, to be able to choose audience to filter events
         driver.findElement(By.xpath("//div[@class='multi-select']")).click();
 
-        String  boxText = driver.findElement(By.xpath("//div[@class='multi-select active']")).getText();
+        String boxText = driver.findElement(By.xpath("//div[@class='multi-select active']")).getText();
         Thread.sleep(2000);
 
         Assert.assertTrue(boxText.contains("Audience"));
@@ -334,7 +233,7 @@ public class MainTestNG {
     */
 
     @Test
-    public void filterEventsByChoosingDate() throws InterruptedException{
+    public void filterEventsByChoosingDate() throws InterruptedException {
 
         //Opening Events page by clicking on All upcoming events button
         driver.findElement(By.xpath("//a[@class='mt-auto btn btn--tertiary']")).click();
@@ -350,7 +249,7 @@ public class MainTestNG {
         //clicking to ">" button on Calendar to be able to choose next month
         driver.findElement(By.xpath("//div[@class='react-calendar__navigation']//button[4]")).click();
 
-        String  calendarText = driver.findElement(By.xpath("//button[@class='react-calendar__navigation__label']")).getText();
+        String calendarText = driver.findElement(By.xpath("//button[@class='react-calendar__navigation__label']")).getText();
         Assert.assertTrue(calendarText.contains("August"));
 
         Thread.sleep(2000);
@@ -375,7 +274,7 @@ public class MainTestNG {
      */
 
     @Test
-    public  void lookAtEventsDetails(){
+    public void lookAtEventsDetails() {
 
 
         //Opening Events page by clicking on All upcoming events button
@@ -399,27 +298,28 @@ public class MainTestNG {
     // Below three Tesfaldet's test cases
 
     @Test
-    public  void becomeAMember() {
-  // Select the membership menu from the home page and open it.
+    public void becomeAMember() {
+        // Select the membership menu from the home page and open it.
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
-   //check if the logo and the title is displayed.
+        //check if the logo and the title is displayed.
         WebElement Logo = driver.findElement(By.className("field-logo__wrapper"));
         Assert.assertTrue(Logo.isDisplayed());
 
         WebElement becomeMember = driver.findElement(By.linkText("Become a Member"));
-        Assert.assertTrue(becomeMember.isDisplayed()) ;
+        Assert.assertTrue(becomeMember.isDisplayed());
 
 
         WebElement info = driver.findElement(By.xpath("//div[@class ='row']"));
-        Assert.assertTrue(info.isDisplayed()) ;
+        Assert.assertTrue(info.isDisplayed());
 
     }
+
     @Test
-    public  void membershipBox() throws InterruptedException{
+    public void membershipBox() throws InterruptedException {
         WebElement membership = driver.findElement(By.xpath("//ul[@class='header__nav-bar-list js-nav-bar-list']/../ul/li[5]/a"));
         membership.click();
-    //locate the membership, discovery circle and founders council and open them.
+        //locate the membership, discovery circle and founders council and open them.
         WebElement member = driver.findElement(By.id("accordion__button-1"));
         member.click();
         Thread.sleep(2000);
@@ -437,40 +337,41 @@ public class MainTestNG {
 
         WebElement isIncluded = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//table//thead//tr/th)[1]"));
         String text = isIncluded.getText().trim();
-        Assert.assertTrue(text.contains("Who's included?")) ;
+        Assert.assertTrue(text.contains("Who's included?"));
 
 
         WebElement oneYear = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//table//thead//tr/th)[2]"));
         String Year1 = oneYear.getText().trim();
-        Assert.assertTrue(Year1.contains("One year")) ;
+        Assert.assertTrue(Year1.contains("One year"));
 
 
         WebElement twoYear = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//table//thead//tr/th)[3]"));
         String Year2 = twoYear.getText().trim();
-        Assert.assertTrue(Year2.contains("Two years")) ;
+        Assert.assertTrue(Year2.contains("Two years"));
 
         WebElement twoAdultChildren = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//tbody//tr/td)[1]"));
         String twoAD = twoAdultChildren.getText().trim();
-        Assert.assertTrue(twoAD.contains("Two adults, children*, and one guest")) ;
+        Assert.assertTrue(twoAD.contains("Two adults, children*, and one guest"));
 
 
         WebElement price = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//tbody//tr/td)[2]"));
         String price1 = price.getText();
-        Assert.assertTrue(price1.contains("$180")) ;
+        Assert.assertTrue(price1.contains("$180"));
 
         WebElement price2 = driver.findElement(By.xpath("(//div[@class ='col-12 mb-4 mb-md-0 copy']//tbody//tr/td)[3]"));
         String price3 = price2.getText().trim();
-        Assert.assertTrue(price3.contains("$345")) ;
+        Assert.assertTrue(price3.contains("$345"));
 
 
         WebElement joinButton = driver.findElement(By.xpath("//a[@href='#modal-1'][1]"));
-        Assert.assertTrue(joinButton.isDisplayed()) ;
+        Assert.assertTrue(joinButton.isDisplayed());
 
         WebElement renewButton = driver.findElement(By.xpath("//a[@href='#modal-2'][1]"));
         Assert.assertTrue(renewButton.isDisplayed());
 
 
     }
+
     @Test
     public void joinButton() throws InterruptedException {
 // clicking the join button and go to the next page
@@ -499,74 +400,73 @@ public class MainTestNG {
 
     // Below three scenarios are Saim's Test Cases
 
-            /*
-                Plan Your Visit Linked Pages Test Case evaluates users going to Plan your visit page and being able to
-                to click on the following linked pages and correctly being take to the clicked page: Exhibitions, Directions
-                and Parking, Maps Guide, Amenities, Grainger Science Hub, Public Tours, Discovery Squad , and Meet a Scientist
+    /*
+        Plan Your Visit Linked Pages Test Case evaluates users going to Plan your visit page and being able to
+        to click on the following linked pages and correctly being take to the clicked page: Exhibitions, Directions
+        and Parking, Maps Guide, Amenities, Grainger Science Hub, Public Tours, Discovery Squad , and Meet a Scientist
 
-             */
+     */
     @Test
     public void PlanYourVisitLinkedPages() throws InterruptedException {
         JavascriptExecutor jse = (JavascriptExecutor) CD.driver;
 
         jse.executeScript("scroll(0, 700);");
-        CD.FindAndClick("link","Visit Information");
+        CD.FindAndClick("link", "Visit Information");
 
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
 
-        CD.FindAndClick("id","card__title-text-26236");
+        CD.FindAndClick("id", "card__title-text-26236");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-14156");
+        CD.FindAndClick("id", "card__title-text-14156");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/directions-parking"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-6686");
+        CD.FindAndClick("id", "card__title-text-6686");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/maps-guides"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-23831");
+        CD.FindAndClick("id", "card__title-text-23831");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/amenities"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-21926");
+        CD.FindAndClick("id", "card__title-text-21926");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions/grainger-science-hub"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-26731");
+        CD.FindAndClick("id", "card__title-text-26731");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/public-tours"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-16666");
+        CD.FindAndClick("id", "card__title-text-16666");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/discovery-squad"));
         CD.driver.navigate().back();
 
-        CD.FindAndClick("id","card__title-text-9901");
+        CD.FindAndClick("id", "card__title-text-9901");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist"));
         CD.driver.navigate().back();
 
 
-
     }
 
-            /*
-                Plan Your Visit Learn More Page URLS Test Case goes to the 'plan your visit' page from the field museum web page and
-                verifies if all the 'learn more' links on the page are linked to the correct urls
-                -> learnMore List holds all the 'learn more' button elements
-                -> learnMoreNames List gets corresponding names to the 'learn more' buttons
-                -> learnMOreLinks array holds all the correct expected url links
-            */
+    /*
+        Plan Your Visit Learn More Page URLS Test Case goes to the 'plan your visit' page from the field museum web page and
+        verifies if all the 'learn more' links on the page are linked to the correct urls
+        -> learnMore List holds all the 'learn more' button elements
+        -> learnMoreNames List gets corresponding names to the 'learn more' buttons
+        -> learnMOreLinks array holds all the correct expected url links
+    */
     @Test
-    public void PlanYourVisitLearnMorePageURLS() throws InterruptedException{
-        CD.FindAndClick("link","Visit Information");
+    public void PlanYourVisitLearnMorePageURLS() throws InterruptedException {
+        CD.FindAndClick("link", "Visit Information");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
 
         CD.ScrollPage(1500);
 
-        List<WebElement> learnMore= CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//a"));
+        List<WebElement> learnMore = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//a"));
         List<WebElement> learnMoreNames = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//h3"));
-        String [] learnMoreLinks = {"https://www.fieldmuseum.org/join-give/become-member",
+        String[] learnMoreLinks = {"https://www.fieldmuseum.org/join-give/become-member",
                 "https://www.citypass.com/chicago?mv_source=field&campaign=visit",
                 "https://gocity.com/en-us/?kbid=5657&utm_medium=aff&utm_source=myap&utm_campaign=5657&utm_content=Your%20Default%20Affiliate%20Link",
                 "http://www.chicityclerk.com/chicagocitykey",
@@ -574,7 +474,7 @@ public class MainTestNG {
 
 //        CD.CreateMainHandle();
 //        int countHandles =1;
-        for(int i=0; i < learnMore.size(); i++) {
+        for (int i = 0; i < learnMore.size(); i++) {
 //            learnMore.get(i).click();
 //                for(String handle : CD.driver.getWindowHandles()) {
 //                    if(!handle.equals(CD.mainHandle) && countHandles == i+1) {
@@ -594,30 +494,30 @@ public class MainTestNG {
 
     }
 
-            /*
-                Plan Your Visit Ticket Information Test Case goes to the 'plan your visit' page after going to the main field museum
-                web page and verifies if all the ticket information displayed on the page is as expected.
-                -> The expected prices are stored in a String array called 'eachPrice'
-                -> Each WebElement corresponding to the prices are stored into a List called 'prices'
-                -> A loop is run  that checks the prices depending on the type of pass and the age of the person getting the pass and verifies
-                    if the prices match the expected price
-           */
+    /*
+        Plan Your Visit Ticket Information Test Case goes to the 'plan your visit' page after going to the main field museum
+        web page and verifies if all the ticket information displayed on the page is as expected.
+        -> The expected prices are stored in a String array called 'eachPrice'
+        -> Each WebElement corresponding to the prices are stored into a List called 'prices'
+        -> A loop is run  that checks the prices depending on the type of pass and the age of the person getting the pass and verifies
+            if the prices match the expected price
+   */
     @Test
-    public void PlanYourVisitTicketInformation() throws InterruptedException{
+    public void PlanYourVisitTicketInformation() throws InterruptedException {
 
-        CD.FindAndClick("link","Visit Information");
+        CD.FindAndClick("link", "Visit Information");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
 
         CD.ScrollPage(450);
 
         List<WebElement> prices = CD.driver.findElements(By.xpath("//ul[@class='pricing-table']/li/span[2]"));
 
-        String [] eachPrice = {"$40/38","$29/27","$35/33","$34/32","$25/23","$30/28","$26/24","$19/17","$23/21"};
+        String[] eachPrice = {"$40/38", "$29/27", "$35/33", "$34/32", "$25/23", "$30/28", "$26/24", "$19/17", "$23/21"};
 
-        for(int i=0,r=0; i < 3; i++, r+=3) {
+        for (int i = 0, r = 0; i < 3; i++, r += 3) {
             Assert.assertTrue(prices.get(r).getText().equals(eachPrice[r]));
-            Assert.assertTrue(prices.get(r+1).getText().equals(eachPrice[r+1]));
-            Assert.assertTrue(prices.get(r+2).getText().equals(eachPrice[r+2]));
+            Assert.assertTrue(prices.get(r + 1).getText().equals(eachPrice[r + 1]));
+            Assert.assertTrue(prices.get(r + 2).getText().equals(eachPrice[r + 2]));
         }
 
     }
@@ -631,7 +531,7 @@ public class MainTestNG {
 
     //finding all links from that page and looping.I used "Action" class to hover over  through my elements.
     @Test
-     public void testM() throws InterruptedException {
+    public void testM() throws InterruptedException {
         List<WebElement> links = driver.findElements(By.xpath("//ul[@class ='menu-full__nav-list pt-3']//a"));
 //
         Thread.sleep(2000);
@@ -788,6 +688,7 @@ public class MainTestNG {
         //Verify the default displayed option matches "Sort by Featured Items"
         Assert.assertTrue(selectSort.getFirstSelectedOption().getText().equals("Sort by Featured Items"), "Option displayed by default matches 'Sort by Featured Items' verification: FAILED");
     }
+
     @Test
     public static void FieldMuseumKidsItems() {
         driver.navigate().to("https://store.fieldmuseum.org/Kids/?a=67&sb=0&ipg=24");
@@ -803,10 +704,6 @@ public class MainTestNG {
         Assert.assertTrue(!totalPoductsList.isEmpty(), "All products are displayed on a single page: verification FAILED");
 
     }
-
-
-
-
 
 
 }
