@@ -19,7 +19,7 @@ public class CD {
 
     public static WebDriver driver;
     public static Select selected;
-
+    public static String mainHandle;
 
     /*
             SetChromeDriver Method sets the property for the webdriver. It uses the driver variable and refers it to
@@ -233,6 +233,14 @@ public class CD {
         }else{
             js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
         }
+    }
+
+    public static void CreateMainHandle() {
+        mainHandle = CD.driver.getWindowHandle();
+    }
+
+    public static void switchWindow(String handle) {
+        CD.driver.switchTo().window(handle);
     }
 
 
