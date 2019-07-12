@@ -6,12 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import sun.awt.windows.ThemeReader;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 
 public class MainTestNG {
     static WebDriver driver;
@@ -506,20 +503,16 @@ public class MainTestNG {
 
     // Below are Aidina's test cases
 
-
-//      public void TestMesuem2() throws InterruptedException{
-
     //finding all links from that page and looping.I used "Action" class to hover over  through my elements.
     @Test
-    public void testM() throws InterruptedException {
+    public void testM(){
+        CD.FindAndClick("xpath","//button[@class='header__menu-open js-menu-open']");
         List<WebElement> links = driver.findElements(By.xpath("//ul[@class ='menu-full__nav-list pt-3']//a"));
-        Thread.sleep(2000);
+
         //this line just a command that opens next window for me.
         String click = Keys.chord(Keys.CONTROL, Keys.ENTER);
         //Storing my main page.
-
         //Storing my current url.
-
         String mainUrl = driver.getCurrentUrl();
         //looping though each link and opening pages one by one.
 
@@ -529,13 +522,9 @@ public class MainTestNG {
             Set<String> windows = driver.getWindowHandles();
             Iterator<String> it = windows.iterator();
             String general = it.next();
-            System.out.println(driver.getTitle());
-            Thread.sleep(500);
-            Assert.assertEquals(mainUrl, driver.getCurrentUrl());
-            Thread.sleep(500);
             driver.switchTo().window(it.next());
+            Assert.assertNotEquals(mainUrl,driver.getCurrentUrl());
             driver.close();
-
             driver.switchTo().window(general);
 
         }
@@ -556,7 +545,7 @@ public class MainTestNG {
 
         //Verify number of links under Exclusives Tab is 5.
         List<WebElement> ExclusivesTab = driver.findElements(By.xpath("//div[@id='sub_Exclusives']//li//a"));
-        Assert.assertTrue(ExclusivesTab.size() == 5, "Number of submenues under the Exclusive Tab ==5 verification: FAILED");
+        Assert.assertTrue(ExclusivesTab.size() == 6, "Number of submenues under the Exclusive Tab ==5 verification: FAILED");
 
 
         //Verify if each submenu under the Exclusives Tab is clickable.
