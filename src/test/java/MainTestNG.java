@@ -1,8 +1,14 @@
+/*
+            TestNG class to run which includes the three scenarios from each member
+ */
+
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class MainTestNG {
+
     static WebDriver driver;
 
     @BeforeMethod
@@ -28,6 +35,9 @@ public class MainTestNG {
     public void close() {
         driver.close();
     }
+
+    @AfterClass
+    public void finalClose() { driver.quit();}
 
 
     //Below three scenarios are Muhammet's test cases
@@ -50,31 +60,20 @@ public class MainTestNG {
         WebElement nextArrow = driver.findElement(By.xpath("//button[contains(@class,'next-button')]"));
 //1
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 //2
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 //3
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-//4
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-//5
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 //6
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 //7
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-//8
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 //9
         nextArrow.click();
-        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+
 
 //Checks date on Calendar "April,28,2020"
         WebElement calendar = driver.findElement(By.xpath("//button[.='April 2020']"));
@@ -91,7 +90,6 @@ public class MainTestNG {
 //        JavascriptExecutor jv = (JavascriptExecutor) driver;
 //        jv.executeScript("scroll(0, 4500);");
 //        Thread.sleep(3000);
-
 
     }
 
@@ -528,7 +526,6 @@ public class MainTestNG {
             driver.switchTo().window(general);
 
         }
-
 
     }
 
