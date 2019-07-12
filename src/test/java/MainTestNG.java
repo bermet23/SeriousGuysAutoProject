@@ -23,7 +23,7 @@ public class MainTestNG {
         CD.driver = driver;
         driver.get("https://www.fieldmuseum.org");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
     }
 
@@ -406,8 +406,9 @@ public class MainTestNG {
         and Parking, Maps Guide, Amenities, Grainger Science Hub, Public Tours, Discovery Squad , and Meet a Scientist
 
      */
+
     @Test
-    public void PlanYourVisitLinkedPages() throws InterruptedException {
+    public void PlanYourVisitLinkedPages(){
         JavascriptExecutor jse = (JavascriptExecutor) CD.driver;
 
         jse.executeScript("scroll(0, 700);");
@@ -415,38 +416,16 @@ public class MainTestNG {
 
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
 
-        CD.FindAndClick("id", "card__title-text-26236");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions"));
-        CD.driver.navigate().back();
+        List<WebElement> links = CD.driver.findElements(By.xpath("//div[@class='container']/ul//a"));
 
-        CD.FindAndClick("id", "card__title-text-14156");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/directions-parking"));
-        CD.driver.navigate().back();
+        String [] expectedLinks = {"https://www.fieldmuseum.org/exhibitions","https://www.fieldmuseum.org/visit/directions-parking","https://www.fieldmuseum.org/visit/maps-guides","https://www.fieldmuseum.org/visit/amenities","https://www.fieldmuseum.org/exhibitions/grainger-science-hub","https://www.fieldmuseum.org/visit/daily-events/public-tours","https://www.fieldmuseum.org/visit/daily-events/discovery-squad","https://www.fieldmuseum.org/our-events/meet-scientist"};
 
-        CD.FindAndClick("id", "card__title-text-6686");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/maps-guides"));
-        CD.driver.navigate().back();
-
-        CD.FindAndClick("id", "card__title-text-23831");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/amenities"));
-        CD.driver.navigate().back();
-
-        CD.FindAndClick("id", "card__title-text-21926");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/exhibitions/grainger-science-hub"));
-        CD.driver.navigate().back();
-
-        CD.FindAndClick("id", "card__title-text-26731");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/public-tours"));
-        CD.driver.navigate().back();
-
-        CD.FindAndClick("id", "card__title-text-16666");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit/daily-events/discovery-squad"));
-        CD.driver.navigate().back();
-
-        CD.FindAndClick("id", "card__title-text-9901");
-        Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/our-events/meet-scientist"));
-        CD.driver.navigate().back();
-
+        for(int i=0; i < links.size(); i++) {
+            links = CD.driver.findElements(By.xpath("//div[@class='container']/ul//a"));
+            links.get(i).click();
+            Assert.assertEquals(CD.driver.getCurrentUrl(),expectedLinks[i]);
+            CD.driver.navigate().back();
+        }
 
     }
 
@@ -458,39 +437,39 @@ public class MainTestNG {
         -> learnMOreLinks array holds all the correct expected url links
     */
     @Test
-    public void PlanYourVisitLearnMorePageURLS() throws InterruptedException {
+
+    public void PlanYourVisitLearnMorePageURLS(){
         CD.FindAndClick("link", "Visit Information");
+
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
 
         CD.ScrollPage(1500);
 
         List<WebElement> learnMore = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//a"));
-        List<WebElement> learnMoreNames = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//h3"));
+
         String[] learnMoreLinks = {"https://www.fieldmuseum.org/join-give/become-member",
                 "https://www.citypass.com/chicago?mv_source=field&campaign=visit",
                 "https://gocity.com/en-us/?kbid=5657&utm_medium=aff&utm_source=myap&utm_campaign=5657&utm_content=Your%20Default%20Affiliate%20Link",
                 "http://www.chicityclerk.com/chicagocitykey",
                 "https://www.fieldmuseum.org/our-events/free-admission-days"};
 
-//        CD.CreateMainHandle();
-//        int countHandles =1;
+        CD.CreateMainHandle();
+
         for (int i = 0; i < learnMore.size(); i++) {
-//            learnMore.get(i).click();
-//                for(String handle : CD.driver.getWindowHandles()) {
-//                    if(!handle.equals(CD.mainHandle) && countHandles == i+1) {
-//                        CD.switchWindow(handle);
-//                        countHandles++;
-//                        break;
-//                    }
-//                }
-//                Thread.sleep(2000);
-//                Assert.assertEquals(CD.driver.getCurrentUrl(),learnMoreLinks[i]);
-//                CD.switchWindow(CD.mainHandle);
+            learnMore = CD.driver.findElements(By.xpath("//div[@class='entity entity-paragraphs-item paragraphs-item-titled-list-with-button']//a"));
+            learnMore.get(i).click();
 
-            String elementLink = learnMore.get(i).getAttribute("href");
-            Assert.assertTrue(elementLink.equals(learnMoreLinks[i]));
+                for(String handle : CD.driver.getWindowHandles()) {
+                    if(!handle.equals(CD.mainHandle)) {
+                        CD.switchWindow(handle);
+                        break;
+                    }
+                }
+
+            Assert.assertEquals(CD.driver.getCurrentUrl(),learnMoreLinks[i]);
+            CD.driver.close();
+            CD.switchWindow(CD.mainHandle);
         }
-
 
     }
 
@@ -502,8 +481,9 @@ public class MainTestNG {
         -> A loop is run  that checks the prices depending on the type of pass and the age of the person getting the pass and verifies
             if the prices match the expected price
    */
+
     @Test
-    public void PlanYourVisitTicketInformation() throws InterruptedException {
+    public void PlanYourVisitTicketInformation() {
 
         CD.FindAndClick("link", "Visit Information");
         Assert.assertTrue(CD.driver.getCurrentUrl().equals("https://www.fieldmuseum.org/visit"));
@@ -533,7 +513,6 @@ public class MainTestNG {
     @Test
     public void testM() throws InterruptedException {
         List<WebElement> links = driver.findElements(By.xpath("//ul[@class ='menu-full__nav-list pt-3']//a"));
-//
         Thread.sleep(2000);
         //this line just a command that opens next window for me.
         String click = Keys.chord(Keys.CONTROL, Keys.ENTER);
@@ -544,8 +523,8 @@ public class MainTestNG {
         String mainUrl = driver.getCurrentUrl();
         //looping though each link and opening pages one by one.
 
-        for (WebElement l : links) {
 
+        for (WebElement l : links) {
             l.sendKeys(click);
             Set<String> windows = driver.getWindowHandles();
             Iterator<String> it = windows.iterator();
